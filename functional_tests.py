@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 import unittest
+import time
 
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.firefox import GeckoDriverManager
@@ -24,7 +26,7 @@ class NewVistitorTest(unittest.TestCase):
 
         # She notices the page title and header mention to-do lists
         self.assertIn('To-Do', self.browser.title)
-        header_text = self.browser.find_element(By.ID, "h1").text   
+        header_text = self.browser.find_element(By.TAG_NAME, "h1").text   
         self.assertIn('To-Do', header_text)
         
         # She is invited to enter a to-do item straight away
@@ -45,7 +47,8 @@ class NewVistitorTest(unittest.TestCase):
         table = self.browser.find_element(By.ID, 'id_list_table')
         rows = table.find_elements(By.ID, 'tr')
         self.assertTrue(
-            any(row.text == '1: Buy peacock feathers' for row in rows)
+            any(row.text == '1: Buy peacock feathers' for row in rows),
+            "New to-do item did not appear in table"
         )
 
         self.fail('Finish the test!')
