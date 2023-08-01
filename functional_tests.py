@@ -14,7 +14,8 @@ from webdriver_manager.firefox import GeckoDriverManager
 class NewVistitorTest(unittest.TestCase):
 
     def setUp(self):
-        self.browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+        # self.browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+        self.browser = webdriver.Chrome()
 
     def tearDown(self):
         self.browser.quit()
@@ -45,13 +46,13 @@ class NewVistitorTest(unittest.TestCase):
         time.sleep(1)
 
         table = self.browser.find_element(By.ID, 'id_list_table')
-        rows = table.find_elements(By.ID, 'tr')
-        self.assertTrue(
-            any(row.text == '1: Buy peacock feathers' for row in rows),
-            "New to-do item did not appear in table"
-        )
+        rows = table.find_elements(By.TAG_NAME, 'tr')
+        self.assertIn('1: Buy peacock feathers', [row.text for row in rows])
+        self.assertIn('2: Use peacock feathers to make a fly', [row.text for row in rows])
 
         self.fail('Finish the test!')
+
+        
 
 
 if __name__ == '__main__':
