@@ -4,7 +4,7 @@ from django.http import HttpRequest
 
 
 from lists.views import home_page
-from lists.models import Item
+from lists.models import Item, List
 
 class HomePageTest(TestCase):
 
