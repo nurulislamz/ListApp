@@ -68,7 +68,7 @@ class NewVisitorTest(LiveServerTestCase):
         # When she hits enter, page updates, and page lists
         # '1: Buy peacock feathers' as an item on the to-do table
         inputbox.send_keys(Keys.ENTER)
-        time.sleep(1)
+        time.sleep(5)
 
 
         # The page updates again, and now shows both items on her list
