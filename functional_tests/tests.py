@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException
 
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
 import unittest
 import time
@@ -15,7 +15,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 MAX_WAIT = 10
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self):
         # self.browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
@@ -134,7 +134,7 @@ class NewVisitorTest(LiveServerTestCase):
             512, 
             delta = 10
         )
-
+        
         inputbox.send_keys('testing')
         inputbox.send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table('1: testing')
