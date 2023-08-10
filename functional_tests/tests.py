@@ -7,6 +7,7 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
 import unittest
 import time
+import os
 
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.firefox import GeckoDriverManager
@@ -20,6 +21,9 @@ class NewVisitorTest(StaticLiveServerTestCase):
     def setUp(self):
         # self.browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
         self.browser = webdriver.Chrome()
+        staging_server = os.environ.get('STAGING_SERVER')
+        if staging_server:
+            self.live_server_url = 'http://' + staging_server
 
     def tearDown(self):
         self.browser.quit()
