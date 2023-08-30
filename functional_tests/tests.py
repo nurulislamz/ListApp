@@ -9,8 +9,8 @@ import unittest
 import time
 import os
 
-from selenium.webdriver.firefox.service import Service as FirefoxService
-from webdriver_manager.firefox import GeckoDriverManager
+# from selenium.webdriver.firefox.service import Service as FirefoxService
+# from webdriver_manager.firefox import GeckoDriverManager
 
 # assert 'To-Do' in browser.title
 
@@ -20,7 +20,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self):
         # self.browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
-        self.browser = webdriver.Chrome()
+        self.browser = webdriver.Chrome() 
         staging_server = os.environ.get('STAGING_SERVER')
         if staging_server:
             self.live_server_url = 'http://' + staging_server
